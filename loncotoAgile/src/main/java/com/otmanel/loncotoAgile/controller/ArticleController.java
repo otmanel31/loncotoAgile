@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.web;
+package com.otmanel.loncotoAgile.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.loncoto.loncontoBoot.metier.Article;
-import com.loncoto.loncontoBoot.repositories.ArticleRepository;
+import com.otmanel.loncotoAgile.metier.Article;
+import com.otmanel.loncotoAgile.repositories.ArticleRepository;
 
 
 @Controller
