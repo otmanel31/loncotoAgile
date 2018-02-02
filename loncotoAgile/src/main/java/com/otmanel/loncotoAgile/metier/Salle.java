@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,25 +18,27 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString(exclude = {"etages"})
-public class Batiment {
+@Getter @Setter @NoArgsConstructor @ToString(exclude = {"equipments"})
+public class Salle {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private String name;
+	private String nom;
 	@ManyToOne
-	private Site site;
-	@OneToMany(mappedBy="batiment")
+	private Etage etage;
+	@OneToMany(mappedBy="salle")
 	@JsonIgnore
-	private Set<Etage> etages;
+	private Set<Materiel> equipments;
 	
-	public Set<Etage> getEtages(){
-		if (this.etages == null ) this.etages = new HashSet<>();
-		return this.etages;
-	}
-	
-	public Batiment(int id, String name) {
+	public Salle(int id, String nom) {
+		super();
 		this.id = id;
-		this.name = name;
+		this.nom = nom;
 	}
+	
+	public Set<Materiel> getEquipments(){
+		if (this.equipments == null) this.equipments = new HashSet<>();
+		return this.equipments;
+	}
+	
 }
