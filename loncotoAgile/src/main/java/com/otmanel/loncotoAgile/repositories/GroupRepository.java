@@ -1,9 +1,10 @@
-package com.loncoto.loncontoBoot.repositories;
+package com.otmanel.loncotoAgile.repositories;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.loncoto.loncontoBoot.metier.Group;
+import com.otmanel.loncotoAgile.metier.Group;
 
-public interface GroupRepository extends PagingAndSortingRepository<Group, Integer>{
+public interface GroupRepository extends CrudRepository<Group, Integer>{
 
 }

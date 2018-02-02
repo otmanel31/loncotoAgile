@@ -1,8 +1,8 @@
-package com.loncoto.loncontoBoot.repositories;
+package com.otmanel.loncotoAgile.repositories;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.loncoto.loncontoBoot.metier.Client;
+import com.otmanel.loncotoAgile.metier.Client;
 
 public interface ClientRepository extends PagingAndSortingRepository<Client, Integer> {
 
