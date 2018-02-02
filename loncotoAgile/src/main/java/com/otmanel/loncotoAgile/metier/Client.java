@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,33 +19,31 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString(exclude = {"batiments", "clients"})
-public class Site {
+@Getter  @Setter @NoArgsConstructor @ToString(exclude= {"equipments", "sites"})
+public class Client {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@OneToMany(mappedBy="site")
-	@JsonIgnore 
-	private Set<Batiment> batiments;
-	@ManyToMany
+	@OneToMany(mappedBy="client")
 	@JsonIgnore
-	private Set<Client> clients;
+	private Set<Materiel> equipments;
+	@ManyToMany(mappedBy="clients")
+	@JsonIgnore
+	private Set<Site> sites;
 	
-	public Set<Client> getClients(){
-		if (this.clients == null) this.clients = new HashSet<>();
-		return this.clients;
+	public Set<Site> getSites(){
+		if (this.sites == null ) this.sites = new HashSet<>();
+		return this.sites;
 	}
 	
-	
-	public Set<Batiment> getBatiments(){
-		if (this.batiments == null) this.batiments = new HashSet<>();
-		return this.batiments;
-	}
-	
-	public Site(int id, String name) {
+	public Client(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-
+	
+	public Set<Materiel> getEquipments(){
+		if (this.equipments == null) this.equipments = new HashSet<>();
+		return this.equipments;
+	}
 }

@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +17,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor 
+@Table(name="groupo")
 public class Group {
 	@Id  @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,25 +19,28 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter  @Setter @NoArgsConstructor @ToString(exclude= {"subfamilies"})
-public class Famille {
+@Getter  @Setter @NoArgsConstructor @ToString(exclude= {"family", "articles"})
+public class SousFamille {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@OneToMany(mappedBy="family")
+	@ManyToOne
+	private Famille family;
+	@OneToMany(mappedBy="subfamilly")
 	@JsonIgnore
-	private Set<SousFamille> subfamilies;
+	private Set<Article> articles;
 	
-	public Set<SousFamille> getSubfamilies(){
-		if (this.subfamilies == null) this.subfamilies = new HashSet<>();
-		return this.subfamilies;
+	public Set<Article> getArticles(){
+		if (this.articles == null) this.articles = new HashSet<>();
+		return this.articles;
 	}
 
-	public Famille(int id, String name) {
+	public SousFamille(int id, String name, Famille family) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.family = family;
 	}
 	
 }

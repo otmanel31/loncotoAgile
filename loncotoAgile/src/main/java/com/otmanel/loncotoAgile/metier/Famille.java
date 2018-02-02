@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,25 +19,25 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @ToString(exclude = {"batiment", "salles"})
-public class Etage {
+@Getter  @Setter @NoArgsConstructor @ToString(exclude= {"subfamilies"})
+public class Famille {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int number;
-	@ManyToOne
-	private Batiment batiment;
-	@OneToMany(mappedBy="etage")
+	private String name;
+	@OneToMany(mappedBy="family")
 	@JsonIgnore
-	private Set<Salle> salles;
+	private Set<SousFamille> subfamilies;
 	
-	public Set<Salle> getSalles(){
-		if (this.salles == null ) this.salles = new HashSet<>();
-		return this.salles;
+	public Set<SousFamille> getSubfamilies(){
+		if (this.subfamilies == null) this.subfamilies = new HashSet<>();
+		return this.subfamilies;
 	}
-	
-	public Etage(int id, int number) {
+
+	public Famille(int id, String name) {
+		super();
 		this.id = id;
-		this.number = number;
+		this.name = name;
 	}
+	
 }

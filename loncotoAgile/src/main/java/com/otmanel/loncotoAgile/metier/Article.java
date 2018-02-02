@@ -1,4 +1,4 @@
-package com.loncoto.loncontoBoot.metier;
+package com.otmanel.loncotoAgile.metier;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,31 +20,29 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter  @Setter @NoArgsConstructor @ToString(exclude= {"equipments", "sites"})
-public class Client {
+@Getter @Setter @NoArgsConstructor @ToString(exclude= {"equipments"})
+public class Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@OneToMany(mappedBy="client")
+	private String description;
+	@ManyToOne
+	private SousFamille subfamilly;
+	@OneToMany(mappedBy="article")
 	@JsonIgnore
 	private Set<Materiel> equipments;
-	@ManyToMany(mappedBy="clients")
-	@JsonIgnore
-	private Set<Site> sites;
 	
-	public Set<Site> getSites(){
-		if (this.sites == null ) this.sites = new HashSet<>();
-		return this.sites;
-	}
-	
-	public Client(int id, String name) {
+	public Article(int id, String name, String description, SousFamille subfamilly) {
+		super();
 		this.id = id;
 		this.name = name;
+		this.subfamilly = subfamilly;
+		this.description = description;
 	}
 	
 	public Set<Materiel> getEquipments(){
-		if (this.equipments == null) this.equipments = new HashSet<>();
-		return this.equipments;
+		if (equipments == null ) equipments = new HashSet<>();
+		return equipments;
 	}
 }
